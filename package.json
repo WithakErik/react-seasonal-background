@@ -9,12 +9,13 @@
     "compile": "npx babel src --out-dir lib",
     "deploy": "yarn build && gh-pages -d example/dist && yarn compile"
   },
-  "keywords": ["react", "picture", "gallery"],
+  "keywords": [
+    "react",
+    "picture",
+    "gallery"
+  ],
   "author": "Erik Withak",
   "license": "ISC",
-  "dependencies": {
-    "@wojtekmaj/react-daterange-picker": "^2.4.0"
-  },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
