@@ -19,7 +19,7 @@ const alertContainer = (
   <div style={alertContainerStyle}>
     <img heigh="150px" width="150px" src="./images/icon-140.png" />
     <Button
-      href="www.google.com"
+      href="http://www.google.com"
       icon
       labelPosition="left"
       style={{ backgroundColor: "forestgreen", color: "white" }}
@@ -30,8 +30,8 @@ const alertContainer = (
   </div>
 );
 const handleClick = data => console.log(data);
-
+const dropletImage = <img height="50px" widht="auto" src="example/images/droplet.png" />;
 const App = () => (
-  <Alert onClick={handleClick} alertContainer={alertContainer} />
+  <Alert onClick={handleClick} alertContainer={alertContainer} dropletSize="150px" dropletImage={dropletImage}/>
 );
 render(<App />, document.getElementById("root"));
