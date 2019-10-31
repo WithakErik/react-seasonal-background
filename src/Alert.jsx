@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { backgroundContainerStyle, fadeAnimation, fallAnimation, foregroundContainerStyle, logoStyle, swayAnimation } from './styles';
+import {
+  backgroundContainerStyle,
+  fadeAnimation,
+  fallAnimation,
+  foregroundContainerStyle,
+  logoStyle,
+  swayAnimation
+} from './styles';
 
-const animations = `${fadeAnimation} ${fallAnimation} ${swayAnimation}`;
-const styleSheet = document.styleSheet[0];
-styleSheet.insertRule(animations, styleSheet.cssRules.length);
-
-
-
-
+/*  imports animations  */
+const styleSheet = document.styleSheets[0];
+styleSheet.insertRule(fadeAnimation, styleSheet.cssRules.length);
+styleSheet.insertRule(fallAnimation, styleSheet.cssRules.length);
+styleSheet.insertRule(swayAnimation, styleSheet.cssRules.length);
 
 const Alert = props => {
   return (
