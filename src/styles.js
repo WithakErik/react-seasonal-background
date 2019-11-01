@@ -1,12 +1,12 @@
 module.exports.alertContainerStyle = {
-  height: '100%',
-  width: '100%',
-  position: 'absolute',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+  height: "100%",
+  width: "100%",
+  position: "absolute",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
   zIndex: 1
-}
+};
 module.exports.backgroundContainerStyle = {
   height: "100%",
   width: "100%",
@@ -28,8 +28,6 @@ module.exports.logoStyle = {
   position: "absolute"
 };
 
-
-
 /*  Animations  */
 module.exports.fadeAnimation = `@keyframes fade {
   from {
@@ -41,10 +39,10 @@ module.exports.fadeAnimation = `@keyframes fade {
 }`;
 module.exports.fallDropAnimation = `@keyframes fall-drop {
   from {
-      top: -10%;
+      top: -20%;
   }
   to {
-      top: 110%;
+      top: 120%;
   }
 }`;
 module.exports.fallSwayAnimation = `@keyframes fall-sway {
@@ -77,9 +75,9 @@ module.exports.springDropAnimation = `@keyframes spring-drop {
 }`;
 module.exports.winterSwayAnimation = `@keyframes winter-sway {
   from {
-    transform: rotate(0deg);
+    transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg);
   }
   to {
-    transform: rotate(360deg);
+    transform: rotateY(360deg) rotateX(360deg) rotateZ(360deg);
   }
 }`;

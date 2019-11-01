@@ -16,42 +16,41 @@ const styleSheet = document.styleSheets[0];
 styleSheet.insertRule(fadeAnimation, styleSheet.cssRules.length);
 styleSheet.insertRule(fallDropAnimation, styleSheet.cssRules.length);
 styleSheet.insertRule(fallSwayAnimation, styleSheet.cssRules.length);
-styleSheet.insertRule(fallSwayAnimation, styleSheet.cssRules.length);
 styleSheet.insertRule(springDropAnimation, styleSheet.cssRules.length);
 styleSheet.insertRule(winterSwayAnimation, styleSheet.cssRules.length);
 
 const getCurrentSeason = month => {
+  month = 7;
   if(month === 11 || month < 2) {
-    return 'winter';
+    return { season: 'winter', dropletImage: 'snowflake'};
   }
   else if(month < 5) {
-    return 'spring';
+    return { season: 'spring', dropletImage: 'raindrop'};
   }
   else if(month < 8) {
-    return 'summer';
+    return { season: 'summer', dropletImage: 'flowerpetal'};
   }
   else {
-    return 'fall';
+    return { season: 'fall', dropletImage: 'leaf'};
   }
 }
 const generateAnimationDropping = season => {
   if(season === 'winter') {
-
+    return `fall-drop ${Math.random() * 30 + 10}s ${Math.random() * 40 + 5}s ease-in forwards infinite`;
   }
   else if(season === 'spring') {
-    return `spring-drop ${Math.floor(Math.random() * 10) + 5}s ${Math.floor(Math.random() * 40) + 5}s ease-in forwards infinite`
+    return `spring-drop ${Math.random() * 10 + 5}s ${Math.random() * 40 + 5}s forwards infinite`
   }
   else if(season === 'summer') {
     
   }
   else {
-    return `spring-drop ${Math.floor(Math.random() * 10) + 3}s ${Math.floor(Math.random() * 40) + 5}s linear forwards infinite`
-    return `fall-drop ${Math.floor(Math.random() * 30) + 30}s ${Math.floor(Math.random() * 40) + 5}s forwards infinite}`;
+    return `fall-drop ${Math.random() * 30 + 10}s ${Math.random() * 40 + 5}s forwards infinite`;
   }
 }
 const generateAnimationSwaying = season => {
   if(season === 'winter') {
-    return `winter-sway ${Math.floor(Math.random() * 15) + 5}s linear forwards infinite`;
+    return `winter-sway ${Math.random() * 15 + 5}s linear forwards infinite`;
   }
   else if(season === 'spring') {
     return `none`;
@@ -60,47 +59,44 @@ const generateAnimationSwaying = season => {
     
   }
   else {
-    return `none`;
-    return `winter-sway ${Math.floor(Math.random() * 15) + 5}s linear forwards infinite`;
-    return `fall-sway ${Math.floor(Math.random() * 15) + 5}s alternate infinite ease-in-out`;
+    return `fall-sway ${Math.random() * 15 + 5}s alternate infinite ease-in-out`;
   }
 }
 const generateFilter = season => {
   if(season === 'winter') {
-
+    return `brightness(${Math.random() * 1 + 1}) hue-rotate(${Math.random() * 90 - 45}deg)`;
   }
   else if(season === 'spring') {
-
+    return `brightness(${Math.random() * .5 + .5}) hue-rotate(${Math.random() * 80 - 20}deg)`;
   }
   else if(season === 'summer') {
     
   }
   else {
-    return `brightness(${Math.random() * .5 + .5}) hue-rotate(${Math.floor(Math.random() * 80) - 20}deg)`;
-    return `hue-rotate(${Math.floor(Math.random() * 180) - 60}deg)`;
+    return `hue-rotate(${Math.random() * 180 - 60}deg)`;
   }
 }
 const generateTransform = season => {
   if(season === 'winter') {
-
+    return `rotateX(${Math.random() * 45}deg)`
   }
   else if(season === 'spring') {
-    return `rotate(-15deg)`;
+    return `rotate(-15deg) translate(-50%, 0)`;
   }
   else if(season === 'summer') {
 
   }
   else {
-    return `rotate(-15deg) translate(-50%, 0)`;
-    return `rotate(${Math.floor(Math.random() * 360)}deg)`;
+    return `rotate(${Math.random() * 360}deg)`;
   }
 }
 const Alert = props => {
 
   /*  Create droplets  */
   let droplets = [];
+  const currentSeason = getCurrentSeason(new Date().getMonth()).season;
+  const currentDropletImage = getCurrentSeason(new Date().getMonth()).dropletImage;
   for(let i = 0; i < 100; i++) {
-    const currentSeason = getCurrentSeason(new Date().getMonth());
     const dropping = generateAnimationDropping(currentSeason);
     const swaying = generateAnimationSwaying(currentSeason);
     const filter = generateFilter(currentSeason);
@@ -108,25 +104,21 @@ const Alert = props => {
     const dropletContainerStyle = {
       animation: `${dropping}, ${swaying}`,
       left: `${i}%`,
-      top: `-${Math.floor(Math.random() * 50) + 50}%`,
+      top: `-${Math.random() * 50 + 50}%`,
       position: 'fixed',
       filter
     }
     const dropletStyle = {
-      height: props.dropletSize,
-      width: 'auto',
       transform
     }
     droplets.push((
       <div style={dropletContainerStyle} key={`droplet-${i}`}>
         <div style={dropletStyle}>
-          {props.dropletImage}
+          <img height="50px" width="auto" src={`src/images/${currentDropletImage}.png`} />
         </div>
       </div>
     ))
   }
-
-
   return (
     <div style={backgroundContainerStyle}>
       <div style={foregroundContainerStyle}></div>

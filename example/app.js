@@ -30,8 +30,11 @@ const alertContainer = (
   </div>
 );
 const handleClick = data => console.log(data);
-const dropletImage = <img height="50px" widht="auto" src="example/images/droplet.png" />;
 const App = () => (
-  <Alert onClick={handleClick} alertContainer={alertContainer} dropletSize="150px" dropletImage={dropletImage}/>
+  <Alert
+    onClick={handleClick}
+    alertContainer={alertContainer}
+    // dropletSize="150px"
+  />
 );
 render(<App />, document.getElementById("root"));
