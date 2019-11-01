@@ -20,7 +20,7 @@ styleSheet.insertRule(springDropAnimation, styleSheet.cssRules.length);
 styleSheet.insertRule(winterSwayAnimation, styleSheet.cssRules.length);
 
 const getCurrentSeason = month => {
-  month = 7;
+  month = 1;
   if(month === 11 || month < 2) {
     return { season: 'winter', dropletImage: 'snowflake'};
   }
@@ -96,14 +96,14 @@ const Alert = props => {
   let droplets = [];
   const currentSeason = getCurrentSeason(new Date().getMonth()).season;
   const currentDropletImage = getCurrentSeason(new Date().getMonth()).dropletImage;
-  for(let i = 0; i < 100; i++) {
+  for(let i = 0; i < (window.innerWidth / 10); i++) {
     const dropping = generateAnimationDropping(currentSeason);
     const swaying = generateAnimationSwaying(currentSeason);
     const filter = generateFilter(currentSeason);
     const transform = generateTransform(currentSeason);
     const dropletContainerStyle = {
       animation: `${dropping}, ${swaying}`,
-      left: `${i}%`,
+      left: `${i / (window.innerWidth / 10) * 100}%`,
       top: `-${Math.random() * 50 + 50}%`,
       position: 'fixed',
       filter
