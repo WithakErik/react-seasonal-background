@@ -22,6 +22,7 @@ styleSheet.insertRule(winterSwayAnimation, styleSheet.cssRules.length);
 styleSheet.insertRule(summerSwayAnimation, styleSheet.cssRules.length);
 
 const getCurrentSeason = month => {
+  month = 4;
   if(month === 11|| month < 2) {
     return { season: 'winter', dropletImage: 'snowflake'};
   }
@@ -68,7 +69,7 @@ const generateFilter = season => {
     return `brightness(${Math.random() * 1 + 1}) hue-rotate(${Math.random() * 90 - 45}deg)`;
   }
   else if(season === 'spring') {
-    return `brightness(${Math.random() * .5 + .5}) hue-rotate(${Math.random() * 80 - 20}deg)`;
+    return `brightness(${Math.random() * .5 + .5}) hue-rotate(${Math.random() * 60 - 30}deg)`;
   }
   else if(season === 'summer') {
     return `brightness(${Math.random() * .5 + .5})`;
@@ -111,12 +112,13 @@ const Alert = props => {
       filter
     }
     const dropletStyle = {
-      transform
+      transform,
+      opacity: `${currentSeason === 'spring' ? Math.random() * 1 : 1}`,
     }
     droplets.push((
       <div style={dropletContainerStyle} key={`droplet-${i}`}>
         <div style={dropletStyle}>
-          <img height="50px" width="auto" src={`src/images/${currentDropletImage}.png`} />
+          <img height={currentSeason === 'fall' ? '25px' : '50px'} width="auto" src={`src/images/${currentDropletImage}.png`} />
         </div>
       </div>
     ))

@@ -18,7 +18,7 @@ module.exports.foregroundContainerStyle = {
   height: "100%",
   width: "100%",
   position: "absolute",
-  background: "forestgreen",
+  background: "white",
   animation: "fade 10s 3s forwards linear"
 };
 module.exports.logoStyle = {
@@ -64,12 +64,12 @@ module.exports.fallSwayAnimation = `@keyframes fall-sway {
 module.exports.springDropAnimation = `@keyframes spring-drop {
   0% {
     top: -25%;
-    margin-left: -25%;
+    margin-left: -30%;
   }
   100% {
     top: 125%;
-    margin-left: 25%;
-    transform: rotate(33deg);
+    margin-left: 30%;
+    opacity: 0;
   }
 }`;
 module.exports.winterSwayAnimation = `@keyframes winter-sway {
