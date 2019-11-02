@@ -22,7 +22,6 @@ styleSheet.insertRule(winterSwayAnimation, styleSheet.cssRules.length);
 styleSheet.insertRule(summerSwayAnimation, styleSheet.cssRules.length);
 
 const getCurrentSeason = month => {
-  month = 8;
   if(month === 11|| month < 2) {
     return { season: 'winter', dropletImage: 'snowflake'};
   }
@@ -123,7 +122,7 @@ const Alert = props => {
     ))
   }
   return (
-    <div style={backgroundContainerStyle}>
+    <div style={{...backgroundContainerStyle, background: `url('./src/images/${currentSeason}.png') no-repeat center center fixed`, backgroundSize: 'cover'}}>
       <div style={foregroundContainerStyle}></div>
       <span style={alertContainerStyle}>
         {props.alertContainer}

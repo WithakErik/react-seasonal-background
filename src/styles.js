@@ -12,8 +12,7 @@ module.exports.backgroundContainerStyle = {
   width: "100%",
   display: "flex",
   flexDirection: "column",
-  alignItems: "center",
-  background: "black"
+  alignItems: "center"
 };
 module.exports.foregroundContainerStyle = {
   height: "100%",
