@@ -70,7 +70,7 @@ module.exports.springDropAnimation = `@keyframes spring-drop {
   100% {
     top: 125%;
     margin-left: 25%;
-    transform: rotate(15deg);
+    transform: rotate(33deg);
   }
 }`;
 module.exports.winterSwayAnimation = `@keyframes winter-sway {
@@ -80,4 +80,31 @@ module.exports.winterSwayAnimation = `@keyframes winter-sway {
   to {
     transform: rotateY(360deg) rotateX(360deg) rotateZ(360deg);
   }
+}`;
+module.exports.summerSwayAnimation = `@keyframes summer-sway {
+	0% {
+		margin-left: 0;
+		transform: rotateZ(0deg) rotateX(0deg) rotateY(0deg);
+    animation-timing-function: ease-out;
+	}
+	25% {
+		margin-left: 5%;
+    transform: rotateZ(25deg) rotateX(15deg) rotateY(90deg);
+    animation-timing-function: ease-in;
+	}
+	50% {
+    margin-left: 0;
+		transform: rotateZ(0deg) rotateX(30deg) rotateY(180deg);
+    animation-timing-function: ease-out;
+	}
+	75% {
+		margin-left: -5%;
+    transform: rotateZ(-25deg) rotateX(15deg) rotateY(270deg);
+    animation-timing-function: ease-in;
+	}
+	100% {
+		margin-left: 0;
+		transform: rotateZ(0deg) rotateX(0deg) rotateY(360deg);
+    animation-timing-function: ease-out;
+	}
 }`;

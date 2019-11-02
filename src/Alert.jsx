@@ -8,6 +8,7 @@ import {
   foregroundContainerStyle,
   logoStyle,
   springDropAnimation,
+  summerSwayAnimation,
   winterSwayAnimation,
 } from './styles';
 
@@ -18,17 +19,18 @@ styleSheet.insertRule(fallDropAnimation, styleSheet.cssRules.length);
 styleSheet.insertRule(fallSwayAnimation, styleSheet.cssRules.length);
 styleSheet.insertRule(springDropAnimation, styleSheet.cssRules.length);
 styleSheet.insertRule(winterSwayAnimation, styleSheet.cssRules.length);
+styleSheet.insertRule(summerSwayAnimation, styleSheet.cssRules.length);
 
 const getCurrentSeason = month => {
-  month = 1;
-  if(month === 11 || month < 2) {
+  month = 8;
+  if(month === 11|| month < 2) {
     return { season: 'winter', dropletImage: 'snowflake'};
   }
   else if(month < 5) {
     return { season: 'spring', dropletImage: 'raindrop'};
   }
   else if(month < 8) {
-    return { season: 'summer', dropletImage: 'flowerpetal'};
+    return { season: 'summer', dropletImage: 'feather'};
   }
   else {
     return { season: 'fall', dropletImage: 'leaf'};
@@ -39,10 +41,10 @@ const generateAnimationDropping = season => {
     return `fall-drop ${Math.random() * 30 + 10}s ${Math.random() * 40 + 5}s ease-in forwards infinite`;
   }
   else if(season === 'spring') {
-    return `spring-drop ${Math.random() * 10 + 5}s ${Math.random() * 40 + 5}s forwards infinite`
+    return `spring-drop ${Math.random() * 5 + 2}s ${Math.random() * 40 + 5}s forwards linear infinite`
   }
   else if(season === 'summer') {
-    
+    return `fall-drop ${Math.random() * 30 + 10}s ${Math.random() * 40 + 5}s forwards infinite`;
   }
   else {
     return `fall-drop ${Math.random() * 30 + 10}s ${Math.random() * 40 + 5}s forwards infinite`;
@@ -56,7 +58,7 @@ const generateAnimationSwaying = season => {
     return `none`;
   }
   else if(season === 'summer') {
-    
+    return `summer-sway ${Math.random() * 5 + 5}s forwards linear infinite`;   
   }
   else {
     return `fall-sway ${Math.random() * 15 + 5}s alternate infinite ease-in-out`;
@@ -70,10 +72,10 @@ const generateFilter = season => {
     return `brightness(${Math.random() * .5 + .5}) hue-rotate(${Math.random() * 80 - 20}deg)`;
   }
   else if(season === 'summer') {
-    
+    return `brightness(${Math.random() * .5 + .5})`;
   }
   else {
-    return `hue-rotate(${Math.random() * 180 - 60}deg)`;
+    return `brightness(${Math.random() * .5 + .5}) hue-rotate(${Math.random() * 180 - 60}deg)`;
   }
 }
 const generateTransform = season => {
@@ -81,7 +83,7 @@ const generateTransform = season => {
     return `rotateX(${Math.random() * 45}deg)`
   }
   else if(season === 'spring') {
-    return `rotate(-15deg) translate(-50%, 0)`;
+    return `rotate(-33deg) translate(-50%, 0)`;
   }
   else if(season === 'summer') {
 
@@ -96,14 +98,15 @@ const Alert = props => {
   let droplets = [];
   const currentSeason = getCurrentSeason(new Date().getMonth()).season;
   const currentDropletImage = getCurrentSeason(new Date().getMonth()).dropletImage;
-  for(let i = 0; i < (window.innerWidth / 10); i++) {
+  const multiplier = currentSeason === 'summer' ? 100 : 10
+  for(let i = 0; i < (window.innerWidth / multiplier); i++) {
     const dropping = generateAnimationDropping(currentSeason);
     const swaying = generateAnimationSwaying(currentSeason);
     const filter = generateFilter(currentSeason);
     const transform = generateTransform(currentSeason);
     const dropletContainerStyle = {
       animation: `${dropping}, ${swaying}`,
-      left: `${i / (window.innerWidth / 10) * 100}%`,
+      left: `${i / (window.innerWidth / multiplier) * 100}%`,
       top: `-${Math.random() * 50 + 50}%`,
       position: 'fixed',
       filter
