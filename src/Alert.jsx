@@ -22,7 +22,7 @@ styleSheet.insertRule(winterSwayAnimation, styleSheet.cssRules.length);
 styleSheet.insertRule(summerSwayAnimation, styleSheet.cssRules.length);
 
 const getCurrentSeason = month => {
-  month = 4;
+  month = Math.floor(Math.random() * 12);
   if(month === 11|| month < 2) {
     return { season: 'winter', dropletImage: 'snowflake'};
   }
@@ -93,11 +93,24 @@ const generateTransform = season => {
   }
 }
 const Alert = props => {
+  const seasonInfo = getCurrentSeason(new Date().getMonth());
+  const [currentSeason, setCurrentSeason] = useState(seasonInfo.season);
+  const [currentDropletImage, setCurrentDropletImage] = useState(props.droplet || `./src/images/${seasonInfo.dropletImage}.png`);
+  const [currentBackgroundImage, setCurrentBackgroundImage] = useState(props.background || `./src/images/${seasonInfo.season}.png`);
+
+  useEffect(() => {
+
+    setCurrentDropletImage(`./src/images/${seasonInfo.dropletImage}.png`);
+    setCurrentBackgroundImage(`./src/images/${seasonInfo.season}.png`);
+  }, [currentSeason])
+
+  const updateSeason = month => {
+    const seasonInfo = getCurrentSeason(month);
+    setCurrentSeason(seasonInfo.season);
+  }
 
   /*  Create droplets  */
   let droplets = [];
-  const currentSeason = getCurrentSeason(new Date().getMonth()).season;
-  const currentDropletImage = getCurrentSeason(new Date().getMonth()).dropletImage;
   const multiplier = currentSeason === 'summer' ? 100 : 10
   for(let i = 0; i < (window.innerWidth / multiplier); i++) {
     const dropping = generateAnimationDropping(currentSeason);
@@ -118,13 +131,13 @@ const Alert = props => {
     droplets.push((
       <div style={dropletContainerStyle} key={`droplet-${i}`}>
         <div style={dropletStyle}>
-          <img height={currentSeason === 'fall' ? '25px' : '50px'} width="auto" src={`src/images/${currentDropletImage}.png`} />
+          <img height={currentSeason === 'fall' ? '25px' : '50px'} width="auto" src={currentDropletImage} />
         </div>
       </div>
     ))
   }
   return (
-    <div style={{...backgroundContainerStyle, background: `url('./src/images/${currentSeason}.png') no-repeat center center fixed`, backgroundSize: 'cover'}}>
+    <div style={{...backgroundContainerStyle, background: `url(${currentBackgroundImage}) no-repeat center center fixed`, backgroundSize: 'cover'}}>
       <div style={foregroundContainerStyle}></div>
       <span style={alertContainerStyle}>
         {props.alertContainer}
@@ -132,20 +145,13 @@ const Alert = props => {
       <div>
         {droplets}
       </div>
-      {props.logo ? (
-          <img
-              style={logoStyle}
-              src={props.logo}
-          />
-      ) : null}
+      {/* <select style={{zIndex: 2}} onChange={e => updateSeason(e.target.value)}>
+        <option value="1">Winter</option>
+        <option value="3">Sping</option>
+        <option value="7">Summer</option>
+        <option value="9">Fall</option>
+      </select> */}
   </div>)
 }
 
 export default Alert;
-
-/*
-  Fall    Leaves
-  Winter  Snow
-  Spring  Rain
-  Summer  Flower Petals
-*/

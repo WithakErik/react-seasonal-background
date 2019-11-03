@@ -33,7 +33,7 @@ const handleClick = data => console.log(data);
 const App = () => (
   <Alert
     onClick={handleClick}
-    alertContainer={alertContainer}
+    // alertContainer={alertContainer}
     // dropletSize="150px"
   />
 );
