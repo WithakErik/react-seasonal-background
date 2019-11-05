@@ -12,6 +12,17 @@ import {
   winterSwayAnimation,
 } from './styles';
 
+/*  imports images  */
+import WinterBackground from './images/winter.png';
+import SpringBackground from './images/spring.png';
+import SummerBackground from './images/summer.png';
+import FallBackground from './images/fall.png';
+import WinterDroplet from './images/snowflake.png';
+import SpringDroplet from './images/raindrop.png';
+import SummerDroplet from './images/feather.png';
+import FallDroplet from './images/leaf.png';
+
+
 /*  imports animations  */
 const styleSheet = document.styleSheets[0];
 styleSheet.insertRule(fadeAnimation, styleSheet.cssRules.length);
@@ -22,18 +33,17 @@ styleSheet.insertRule(winterSwayAnimation, styleSheet.cssRules.length);
 styleSheet.insertRule(summerSwayAnimation, styleSheet.cssRules.length);
 
 const getCurrentSeason = month => {
-  month = Math.floor(Math.random() * 12);
   if(month === 11|| month < 2) {
-    return { season: 'winter', dropletImage: 'snowflake'};
+    return { season: 'winter', dropletImage: WinterDroplet, backgroundImage: WinterBackground};
   }
   else if(month < 5) {
-    return { season: 'spring', dropletImage: 'raindrop'};
+    return { season: 'spring', dropletImage: SpringDroplet, backgroundImage: SpringBackground};
   }
   else if(month < 8) {
-    return { season: 'summer', dropletImage: 'feather'};
+    return { season: 'summer', dropletImage: SummerDroplet, backgroundImage: SummerBackground};
   }
   else {
-    return { season: 'fall', dropletImage: 'leaf'};
+    return { season: 'fall', dropletImage: FallDroplet, backgroundImage: FallBackground};
   }
 }
 const generateAnimationDropping = season => {
@@ -95,18 +105,20 @@ const generateTransform = season => {
 const Alert = props => {
   const seasonInfo = getCurrentSeason(new Date().getMonth());
   const [currentSeason, setCurrentSeason] = useState(seasonInfo.season);
-  const [currentDropletImage, setCurrentDropletImage] = useState(props.droplet || `./src/images/${seasonInfo.dropletImage}.png`);
-  const [currentBackgroundImage, setCurrentBackgroundImage] = useState(props.background || `./src/images/${seasonInfo.season}.png`);
+  const [currentDropletImage, setCurrentDropletImage] = useState(props.droplet || seasonInfo.dropletImage);
+  const [currentBackgroundImage, setCurrentBackgroundImage] = useState(props.background || seasonInfo.backgroundImage);
 
-  useEffect(() => {
-
-    setCurrentDropletImage(`./src/images/${seasonInfo.dropletImage}.png`);
-    setCurrentBackgroundImage(`./src/images/${seasonInfo.season}.png`);
-  }, [currentSeason])
+  // useEffect(() => {
+  //   console.log('updating season');
+  //   const seasonInfo = getCurrentSeason(month);
+  // }, [currentSeason])
 
   const updateSeason = month => {
+    console.log('month', month);
     const seasonInfo = getCurrentSeason(month);
     setCurrentSeason(seasonInfo.season);
+    setCurrentDropletImage(seasonInfo.dropletImage);
+    setCurrentBackgroundImage(seasonInfo.backgroundImage);
   }
 
   /*  Create droplets  */
@@ -131,13 +143,13 @@ const Alert = props => {
     droplets.push((
       <div style={dropletContainerStyle} key={`droplet-${i}`}>
         <div style={dropletStyle}>
-          <img height={currentSeason === 'fall' ? '25px' : '50px'} width="auto" src={currentDropletImage} />
+          <img height={currentSeason === 'spring' ? '25px' : '50px'} width="auto" src={currentDropletImage} />
         </div>
       </div>
     ))
   }
   return (
-    <div style={{...backgroundContainerStyle, background: `url(${currentBackgroundImage}) no-repeat center center fixed`, backgroundSize: 'cover'}}>
+    <div style={{...backgroundContainerStyle, background: `url(${currentBackgroundImage}) center / cover no-repeat fixed`, backgroundSize: 'cover'}}>
       <div style={foregroundContainerStyle}></div>
       <span style={alertContainerStyle}>
         {props.alertContainer}
@@ -145,12 +157,12 @@ const Alert = props => {
       <div>
         {droplets}
       </div>
-      {/* <select style={{zIndex: 2}} onChange={e => updateSeason(e.target.value)}>
+      <select style={{zIndex: 2}} onChange={e => updateSeason(e.target.value)}>
         <option value="1">Winter</option>
         <option value="3">Sping</option>
         <option value="7">Summer</option>
         <option value="9">Fall</option>
-      </select> */}
+      </select>
   </div>)
 }
 
