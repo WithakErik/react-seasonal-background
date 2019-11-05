@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
-import Alert from "../src/Alert";
+import SeasonalBackground from "../src/index";
 import { Button, Icon } from "semantic-ui-react";
 
 const alertContainerStyle = {
@@ -31,10 +31,13 @@ const alertContainer = (
 );
 const handleClick = data => console.log(data);
 const App = () => (
-  <Alert
+  <SeasonalBackground
     onClick={handleClick}
-    // alertContainer={alertContainer}
-    // dropletSize="150px"
+    background='https://png.pngtree.com/thumb_back/fw800/back_our/20190619/ourmid/pngtree-company-profile-corporate-culture-brochure-cross-page-design-background-material-image_131621.jpg'
+    droplet='https://cdn.pixabay.com/photo/2012/04/26/12/37/dollar-42338_960_720.png'
+    season='winter'
+    innerContent={<h1>Hello World!</h1>}
+    development
   />
 );
 render(<App />, document.getElementById("root"));

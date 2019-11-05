@@ -1,8 +1,8 @@
 import React from "react";
-import Alert from "./Alert";
+import Season from "./Seasons";
 
-const RainingAlert = props => {
-  return <Alert {...props} />;
+const SeasonalBackground = props => {
+  return <Season {...props} />;
 };
 
-export default RainingAlert;
+export default SeasonalBackground;

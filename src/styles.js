@@ -21,11 +21,6 @@ module.exports.foregroundContainerStyle = {
   background: "white",
   animation: "fade 10s 3s forwards linear"
 };
-module.exports.logoStyle = {
-  top: 0,
-  textAlign: "center",
-  position: "absolute"
-};
 
 /*  Animations  */
 module.exports.fadeAnimation = `@keyframes fade {

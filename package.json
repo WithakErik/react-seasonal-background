@@ -1,7 +1,7 @@
 {
-  "name": "react-picture-gallery",
-  "version": "1.6.13",
-  "description": "React Picture Gallery",
+  "name": "react-seasonal-background",
+  "version": "1.8.1",
+  "description": "React Seasonal Background",
   "main": "lib/index.js",
   "scripts": {
     "start": "webpack-dev-server --open",
@@ -9,10 +9,20 @@
     "compile": "npx babel src --out-dir lib",
     "deploy": "yarn build && gh-pages -d example/dist && yarn compile"
   },
+  "homepage": "https://withakerik.github.io/react-seasonal-background/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WithakErik/react-seasonal-background.git"
+  },
   "keywords": [
     "react",
-    "picture",
-    "gallery"
+    "season",
+    "seasons",
+    "background",
+    "backgrounds",
+    "snowflakes",
+    "rain",
+    "leaves"
   ],
   "author": "Erik Withak",
   "license": "ISC",
@@ -27,9 +37,6 @@
     "gh-pages": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
     "react": "^16.10.2",
-    "react-dom": "^16.10.2",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.88.1",
     "style-loader": "^1.0.0",
     "url-loader": "^2.2.0",
     "webpack": "^4.41.2",
