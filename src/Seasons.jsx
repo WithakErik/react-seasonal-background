@@ -1,25 +1,11 @@
 import React, { useState } from 'react';
 import {
-  alertContainerStyle,
   backgroundContainerStyle,
-  fadeAnimation,
-  fallDropAnimation,
-  fallSwayAnimation,
   foregroundContainerStyle,
-  springDropAnimation,
-  summerSwayAnimation,
-  winterSwayAnimation,
+  innerContentStyle
 } from './styles';
 import * as Functions from './functions'
-
-/*  imports animations  */
-const styleSheet = document.styleSheets[0];
-styleSheet.insertRule(fadeAnimation, styleSheet.cssRules.length);
-styleSheet.insertRule(fallDropAnimation, styleSheet.cssRules.length);
-styleSheet.insertRule(fallSwayAnimation, styleSheet.cssRules.length);
-styleSheet.insertRule(springDropAnimation, styleSheet.cssRules.length);
-styleSheet.insertRule(winterSwayAnimation, styleSheet.cssRules.length);
-styleSheet.insertRule(summerSwayAnimation, styleSheet.cssRules.length);
+import './animations.css';
 
 const Season = props => {
   const seasonInfo = Functions.getCurrentSeason(new Date().getMonth());
@@ -70,7 +56,7 @@ const Season = props => {
   return (
     <div style={{...backgroundContainerStyle, background: `url(${currentBackgroundImage}) center / cover no-repeat fixed`, backgroundSize: 'cover'}}>
       <div style={foregroundContainerStyle}></div>
-      <span style={alertContainerStyle}>
+      <span style={innerContentStyle}>
         {props.innerContent}
       </span>
       <div>
