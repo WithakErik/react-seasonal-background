@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
+import './styles.css';
 import {
-  backgroundContainerStyle,
-  foregroundContainerStyle,
-  innerContentStyle
+  foregroundContainerStyle
 } from './styles';
 import * as Functions from './functions'
-import './animations.css';
 
 const Season = props => {
   let season = null;
@@ -56,10 +54,10 @@ const Season = props => {
     ))
   }
   return (
-    <div style={{...backgroundContainerStyle, background: `url(${currentBackgroundImage}) center / cover no-repeat fixed`, backgroundSize: 'cover'}}>
-      <div style={foregroundContainerStyle(props.fadeLength, props.fadeDelay)}></div>
-      <span style={innerContentStyle}>
-        {props.innerContent}
+    <div id="background-container" style={{ background: `url(${currentBackgroundImage}) center / cover no-repeat fixed`, backgroundSize: 'cover'}}>
+      <div id="foreground-container" style={foregroundContainerStyle(props.fadeLength, props.fadeDelay)}></div>
+      <span id="content-container">
+        {props.contentContainer}
       </span>
       <div>
         {droplets}
