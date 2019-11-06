@@ -1,6 +1,6 @@
 {
   "name": "react-seasonal-background",
-  "version": "1.8.9",
+  "version": "1.8.10",
   "description": "React Seasonal Background",
   "main": "lib/index.js",
   "scripts": {

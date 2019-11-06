@@ -12,6 +12,7 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    background: rgba(0, 0, 0, 0);
     z-index: 1;
 }
 #background-container {
