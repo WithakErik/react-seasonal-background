@@ -57,7 +57,7 @@ const Season = props => {
   }
   return (
     <div style={{...backgroundContainerStyle, background: `url(${currentBackgroundImage}) center / cover no-repeat fixed`, backgroundSize: 'cover'}}>
-      <div style={foregroundContainerStyle}></div>
+      <div style={foregroundContainerStyle(props.fadeLength, props.fadeDelay)}></div>
       <span style={innerContentStyle}>
         {props.innerContent}
       </span>

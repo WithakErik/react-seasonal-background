@@ -14,10 +14,12 @@ module.exports.backgroundContainerStyle = {
   flexDirection: "column",
   alignItems: "center"
 };
-module.exports.foregroundContainerStyle = {
-  height: "100%",
-  width: "100%",
-  position: "absolute",
-  background: "white",
-  animation: "fade 10s 3s forwards linear"
+module.exports.foregroundContainerStyle = (length, delay) => {
+  return {
+    height: "100%",
+    width: "100%",
+    position: "absolute",
+    background: "white",
+    animation: `fade ${length || 5}s ${delay || 3}s forwards linear`
+  }
 };
