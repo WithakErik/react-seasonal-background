@@ -8,7 +8,9 @@ import * as Functions from './functions'
 import './animations.css';
 
 const Season = props => {
-  const seasonInfo = Functions.getCurrentSeason(new Date().getMonth());
+  let season = null;
+  if(props.season) season = props.season === 'winter' ? 1 : props.season === 'spring' ? 4 : props.season === 'summer' ? 7 : 9;
+  const seasonInfo = Functions.getCurrentSeason(season || new Date().getMonth());
   const [currentSeason, setCurrentSeason] = useState(props.season || seasonInfo.season);
   const [currentDropletImage, setCurrentDropletImage] = useState(props.droplet || seasonInfo.dropletImage);
   const [currentBackgroundImage, setCurrentBackgroundImage] = useState(props.background || seasonInfo.backgroundImage);
@@ -66,7 +68,7 @@ const Season = props => {
         <select value={'DEFAULT'} style={{ zIndex: 2 }} onChange={e => updateSeason(e.target.value)}>
           <option value={'DEFAULT'} disabled>Select Season</option>
           <option value={1}>Winter</option>
-          <option value={3}>Sping</option>
+          <option value={3}>Spring</option>
           <option value={7}>Summer</option>
           <option value={9}>Fall</option>
           <option value={-1}>Custom</option>
