@@ -1,13 +1,13 @@
 {
   "name": "react-seasonal-background",
-  "version": "1.8.1",
+  "version": "1.8.3",
   "description": "React Seasonal Background",
   "main": "lib/index.js",
   "scripts": {
     "start": "webpack-dev-server --open",
     "build": "webpack --mode production",
-    "compile": "npx babel src --out-dir lib",
-    "deploy": "rm -rf ./lib && yarn build && gh-pages -d example/dist && yarn compile"
+    "compile": "rm -rf ./lib && npx babel src --out-dir lib --copy-files",
+    "deploy": "yarn build && gh-pages -d example/dist && yarn compile"
   },
   "homepage": "https://withakerik.github.io/react-seasonal-background/",
   "repository": {
