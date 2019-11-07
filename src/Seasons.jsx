@@ -57,7 +57,7 @@ const Season = props => {
     <div id="background-container" style={{ backgroundImage: `url(${currentBackgroundImage})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>
       <div id="foreground-container" style={foregroundContainerStyle(props.fadeLength, props.fadeDelay)}></div>
       <span id="content-container">
-        {props.contentContainer}
+        {props.children}
       </span>
       <div>
         {droplets}

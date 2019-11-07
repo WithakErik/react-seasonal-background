@@ -3,14 +3,14 @@ import { render } from "react-dom";
 import SeasonalBackground from "../src/index";
 import { Button, Icon } from "semantic-ui-react";
 
-const alertContainerStyle = {
+const contentStyle = {
   backgroundColor: "white",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   padding: "33px",
   background: "rgba(0, 0, 0, 0.69)",
-  border: "3px groove honeydew",
+  border: "3px groove aliceblue",
   borderRadius: "13px",
   boxShadow: "3px 3px 6px grey",
   color: "white"
@@ -22,8 +22,9 @@ const App = () => (
     season='fall'
     fadeLength='2'
     fadeDelay='1'
-    // contentContainer={<h1>Hello World!</h1>}
     development
-  />
+  >
+    <h1 style={contentStyle}>Hello World!</h1>
+  </SeasonalBackground>
 );
 render(<App />, document.getElementById("root"));

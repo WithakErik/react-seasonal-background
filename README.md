@@ -10,9 +10,10 @@ Example:
   season='winter'
   fadeLength='4'
   fadeDelay='2'
-  contentContainer={<h1>Hello World!</h1>}
   development
-/>
+>
+  <h1>Hello World!</h1>
+</SeasonalBackground>
 ```
 |Key                   |Type     |Required|Options/Action                    |
 |---------------------:|---------|:------:|----------------------------------|
@@ -21,10 +22,10 @@ Example:
 |***season***          |String   |No      |winter, spring, summer, fall      |
 |***fadeLength***      |Number   |No      |                                  |
 |***fadeDelay***       |Number   |No      |                                  |
-|***contentContainer***|Valid JSX|No      |                                  |
 |***development***     |Boolean  |No      |Displays dropdown to select season|
 ---
 ***Notes:***
 * Setting custom `background` and/or `droplet` will override defaults
 * Setting custom `season` will set correlating season's background/droplet and fall/sway animation.
 * If a custom background/droplet is set, setting `season` will set the correlating fall/sway animation
+* Versions 2.0.0 and above will remove `innerContent` and instead use elements wrapped in `<SeasonalBackground></SeasonalBackground>` tags
