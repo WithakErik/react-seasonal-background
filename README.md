@@ -28,4 +28,4 @@ Example:
 * Setting custom `background` and/or `droplet` will override defaults
 * Setting custom `season` will set correlating season's background/droplet and fall/sway animation.
 * If a custom background/droplet is set, setting `season` will set the correlating fall/sway animation
-* Versions 2.0.0 and above will remove `innerContent` and instead use elements wrapped in `<SeasonalBackground></SeasonalBackground>` tags
+* Versions 2.0.0 and above removes `innerContent` and instead uses elements wrapped in `<SeasonalBackground></SeasonalBackground>` tags
